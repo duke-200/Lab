@@ -1,0 +1,87 @@
+Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    
+    </div>
+    <table class="style1">
+        <tr>
+            <td colspan="2" style="text-align: justify">
+                HTML CONTROLS EXAMPLE</td>
+        </tr>
+        <tr>
+            <td>
+                NAME</td>
+            <td>
+                <input id="txtName" type="text" runat="server" /></td>
+        </tr>
+        <tr>
+            <td>
+                AGE</td>
+            <td>
+                <input id="txtAge" type="text" runat="server" /></td>
+        </tr>
+        <tr>
+            <td>
+                GENDER</td>
+            <td>
+                <input id="rdoMale"  name="gender" type="radio" value="male" 
+                    runat="server"/>MALE
+                <input id="rdoFemale" name="gender" type="radio" 
+                    value="female" runat="server"/>FEMALE</td>
+        </tr>
+        <tr>
+            <td>
+                CITY</td>
+            <td>
+                <select id="ddlCity" name="SELECT YOUR CITY" runat="server">
+                <option value="select"></option>
+                    <option value="cochin">COCHIN</option>
+                     <option value="thrissur">THRISSUR</option>
+                     <option value="kollam">KOLLAM</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btnSubmit" type="submit" value="submit" onserverclick="btnSubmit_ServerClick" runat="server" /></td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
+    <div>
+    <strong >Output:</strong></div>
+    <span id="lblOutput" runat="server" ></span>
+    </form>
+    </body>
+</html>
+DEFAULT.ASPX.CS:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Default2 : System.Web.UI.Page
+{
+    protected void btnSubmit_ServerClick(object sender, EventArgs e)
+    {
+        string name = txtName.Value;
+        string age = txtAge.Value;
+        string gender = rdoMale.Checked ? "Male" : (rdoFemale.Checked ? "Female" : "Not specified");
+        string city = ddlCity.Value;
+
+        lblOutput.InnerText = string.Format("Hello {0}, Age: {1}, Gender: {2}, City: {3}.", name, age, gender, city);
